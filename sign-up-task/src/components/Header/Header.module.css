@@ -1,0 +1,30 @@
+.wrapper{
+    grid-area: 1 / 1 / 2 / 6;
+    background-color: #dbe0f6;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.activeLink {
+    color: white;
+    text-shadow: 1px 1px 2px black;
+
+}
+
+.optionLink:hover{
+    text-shadow: 1px 1px 2px black;
+}
+
+
+
+.item:active, .item {
+    margin: 20px;
+    color: #c0daf0;
+    text-decoration: none;
+    text-align: center;
+
+}
+/*.item:hover{*/
+/*    color: #111111;*/
+/*}*/
