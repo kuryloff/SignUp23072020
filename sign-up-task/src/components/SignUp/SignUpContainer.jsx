@@ -302,7 +302,6 @@ export default function SignUpContainer() {
                 </FormControl>
 
 
-
                 <Button className={classes.button}
                         variant="contained"
                         color="primary"
