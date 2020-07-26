@@ -5,7 +5,7 @@ class SignInContainer extends React.Component {
     render() {
         return (
             <div className={classes.wrapper}>
-                <div className={classes.form}>
+                <div>
                     <h1>Please Sign In Page</h1>
                 </div>
             </div>
