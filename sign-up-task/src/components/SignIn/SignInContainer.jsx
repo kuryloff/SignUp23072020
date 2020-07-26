@@ -109,7 +109,7 @@ export default function SignInContainer() {
             case 'password':
                 if (!value.match(
                     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,64}$/)) {
-                    validatorSetState('password', value, 'passwordError', true, 'passwordText', `has to include 8-64 characters: lowercase, uppercase, digit, symbol`);
+                    validatorSetState('password', value, 'passwordError', true, 'passwordText', `Password must include 8-64 characters: lowercase, uppercase, digit, symbol`);
                 } else {
                     validatorSetState('password', value, 'passwordError', false, 'passwordText', ``);
                 }
