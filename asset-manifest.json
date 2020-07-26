@@ -1,22 +1,24 @@
 {
   "files": {
-    "main.css": "/SignUp23072020/static/css/main.454545a8.chunk.css",
-    "main.js": "/SignUp23072020/static/js/main.4c2d0367.chunk.js",
-    "main.js.map": "/SignUp23072020/static/js/main.4c2d0367.chunk.js.map",
-    "runtime-main.js": "/SignUp23072020/static/js/runtime-main.c9f3dc6b.js",
-    "runtime-main.js.map": "/SignUp23072020/static/js/runtime-main.c9f3dc6b.js.map",
-    "static/js/2.1363290f.chunk.js": "/SignUp23072020/static/js/2.1363290f.chunk.js",
-    "static/js/2.1363290f.chunk.js.map": "/SignUp23072020/static/js/2.1363290f.chunk.js.map",
+    "main.css": "/SignUp23072020/static/css/main.8c3002ac.chunk.css",
+    "main.js": "/SignUp23072020/static/js/main.e172e84b.chunk.js",
+    "main.js.map": "/SignUp23072020/static/js/main.e172e84b.chunk.js.map",
+    "runtime-main.js": "/SignUp23072020/static/js/runtime-main.264db796.js",
+    "runtime-main.js.map": "/SignUp23072020/static/js/runtime-main.264db796.js.map",
+    "static/js/2.8f5d056f.chunk.js": "/SignUp23072020/static/js/2.8f5d056f.chunk.js",
+    "static/js/2.8f5d056f.chunk.js.map": "/SignUp23072020/static/js/2.8f5d056f.chunk.js.map",
+    "static/js/3.67447353.chunk.js": "/SignUp23072020/static/js/3.67447353.chunk.js",
+    "static/js/3.67447353.chunk.js.map": "/SignUp23072020/static/js/3.67447353.chunk.js.map",
     "index.html": "/SignUp23072020/index.html",
-    "precache-manifest.061a60a9818780438feeefb983398ddb.js": "/SignUp23072020/precache-manifest.061a60a9818780438feeefb983398ddb.js",
+    "precache-manifest.b7545d3938637bf115e63ac3abdcd4bc.js": "/SignUp23072020/precache-manifest.b7545d3938637bf115e63ac3abdcd4bc.js",
     "service-worker.js": "/SignUp23072020/service-worker.js",
-    "static/css/main.454545a8.chunk.css.map": "/SignUp23072020/static/css/main.454545a8.chunk.css.map",
-    "static/js/2.1363290f.chunk.js.LICENSE.txt": "/SignUp23072020/static/js/2.1363290f.chunk.js.LICENSE.txt"
+    "static/css/main.8c3002ac.chunk.css.map": "/SignUp23072020/static/css/main.8c3002ac.chunk.css.map",
+    "static/js/2.8f5d056f.chunk.js.LICENSE.txt": "/SignUp23072020/static/js/2.8f5d056f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.c9f3dc6b.js",
-    "static/js/2.1363290f.chunk.js",
-    "static/css/main.454545a8.chunk.css",
-    "static/js/main.4c2d0367.chunk.js"
+    "static/js/runtime-main.264db796.js",
+    "static/js/2.8f5d056f.chunk.js",
+    "static/css/main.8c3002ac.chunk.css",
+    "static/js/main.e172e84b.chunk.js"
   ]
 }
