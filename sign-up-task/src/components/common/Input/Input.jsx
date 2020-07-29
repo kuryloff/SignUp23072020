@@ -8,7 +8,7 @@ export const Input = (props) => {
      return (
         <TextField
             className={props.classes}
-            id="outlined-basic-firstName"
+            id={`outlined-basic-${props.label}`}
             label={props.label}
             variant="outlined"
             value = {props.value || ""}

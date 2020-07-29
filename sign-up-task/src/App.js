@@ -4,11 +4,7 @@ import Header from "./components/Header/Header";
 import {HashRouter, Route} from "react-router-dom";
 import {withSuspense} from "./hoc/withSuspense";
 import {SignInContainer} from "./components/SignIn/SignInContainer";
-
-
-const SignUpContainer = React.lazy(() => import("./components/SignUp/SignUpContainer"));
-
-
+import {SignUpContainer} from "./components/SignUp/SignUpContainer";
 
 const App = () => {
     return (
@@ -22,7 +18,6 @@ const App = () => {
                     <Route path={'/signIn'}
                            render={withSuspense(SignInContainer)}/>
                 </div>
-
             </div>
         </HashRouter>
     )

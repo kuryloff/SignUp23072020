@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
-import SignUpForm from "./SignUpForm";
+import React from 'react';
+import {SignUpForm} from "./SignUpForm";
 import {fieldValidator} from "../../Utils/validators";
 
-export default function SignUpContainer() {
+export const SignUpContainer = () => {
     const [values, setValues] = React.useState({
         firstName:'',
         lastName:'',
@@ -33,13 +33,11 @@ export default function SignUpContainer() {
 
     const formValid = () => {
         let valid = false
-         Object.values(errors).map(x => {
-            (x === "") ? valid = true : valid = false
-        });
-        Object.values(values).map(x => {
-            (x === "") ? valid = false : valid = true
-        })
-        console.log(valid)
+        Object.values(errors)
+            .map(x => {(x === "") ? valid = true : valid = false});
+        Object.values(values)
+            .map(x => {(x === "") ? valid = false : valid = true});
+
         return valid;
     }
 
