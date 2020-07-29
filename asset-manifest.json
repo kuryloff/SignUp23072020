@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/SignUp23072020/static/css/main.8c3002ac.chunk.css",
-    "main.js": "/SignUp23072020/static/js/main.3d3ebc9b.chunk.js",
-    "main.js.map": "/SignUp23072020/static/js/main.3d3ebc9b.chunk.js.map",
-    "runtime-main.js": "/SignUp23072020/static/js/runtime-main.13c75fd8.js",
-    "runtime-main.js.map": "/SignUp23072020/static/js/runtime-main.13c75fd8.js.map",
-    "static/js/2.8f5d056f.chunk.js": "/SignUp23072020/static/js/2.8f5d056f.chunk.js",
-    "static/js/2.8f5d056f.chunk.js.map": "/SignUp23072020/static/js/2.8f5d056f.chunk.js.map",
-    "static/js/3.562041a4.chunk.js": "/SignUp23072020/static/js/3.562041a4.chunk.js",
-    "static/js/3.562041a4.chunk.js.map": "/SignUp23072020/static/js/3.562041a4.chunk.js.map",
+    "main.js": "/SignUp23072020/static/js/main.ce5798ee.chunk.js",
+    "main.js.map": "/SignUp23072020/static/js/main.ce5798ee.chunk.js.map",
+    "runtime-main.js": "/SignUp23072020/static/js/runtime-main.aa6cdb02.js",
+    "runtime-main.js.map": "/SignUp23072020/static/js/runtime-main.aa6cdb02.js.map",
+    "static/js/2.34f02b29.chunk.js": "/SignUp23072020/static/js/2.34f02b29.chunk.js",
+    "static/js/2.34f02b29.chunk.js.map": "/SignUp23072020/static/js/2.34f02b29.chunk.js.map",
+    "static/js/3.92c21096.chunk.js": "/SignUp23072020/static/js/3.92c21096.chunk.js",
+    "static/js/3.92c21096.chunk.js.map": "/SignUp23072020/static/js/3.92c21096.chunk.js.map",
     "index.html": "/SignUp23072020/index.html",
-    "precache-manifest.cc0b627f89f4540b00ac1e1ccb5d7198.js": "/SignUp23072020/precache-manifest.cc0b627f89f4540b00ac1e1ccb5d7198.js",
+    "precache-manifest.257a28f6f0c55be88e8f5b4cd5426f6d.js": "/SignUp23072020/precache-manifest.257a28f6f0c55be88e8f5b4cd5426f6d.js",
     "service-worker.js": "/SignUp23072020/service-worker.js",
     "static/css/main.8c3002ac.chunk.css.map": "/SignUp23072020/static/css/main.8c3002ac.chunk.css.map",
-    "static/js/2.8f5d056f.chunk.js.LICENSE.txt": "/SignUp23072020/static/js/2.8f5d056f.chunk.js.LICENSE.txt"
+    "static/js/2.34f02b29.chunk.js.LICENSE.txt": "/SignUp23072020/static/js/2.34f02b29.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.13c75fd8.js",
-    "static/js/2.8f5d056f.chunk.js",
+    "static/js/runtime-main.aa6cdb02.js",
+    "static/js/2.34f02b29.chunk.js",
     "static/css/main.8c3002ac.chunk.css",
-    "static/js/main.3d3ebc9b.chunk.js"
+    "static/js/main.ce5798ee.chunk.js"
   ]
 }
