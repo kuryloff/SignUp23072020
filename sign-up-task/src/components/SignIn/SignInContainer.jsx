@@ -10,160 +10,62 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {useStyles} from "../common/useStyles/loginStyles";
+import {fieldValidator} from "../../Utils/validators";
+import SignUpForm from "../SignUp/SignUpForm";
+import SignInForm from "./SignIpForm";
 
 
 export default function SignInContainer() {
-    const classes = useStyles();
     const [values, setValues] = React.useState({
-        email: '',
-        password: '',
-        emailError: false,
-        passwordError: false,
-        emailText: "",
-        passwordText: "",
-        showPassword: false,
-        showConfirmPassword: false,
+        firstName:'',
+        lastName:'',
+        password:'',
+        confirmPassword:''
     });
+    const [errors, setErrors] = React.useState(false);
+    const [helperText, setHelperText] = React.useState(false);
 
-    const clearFormFields = () => {
-        setValues({
-            ...values,
-            email: '',
-            password: '',
-        })
-    }
+    const handleChange = (prop) => (event) => {
+        event.persist();
+        setValues(values => ({...values, [prop]: event.target.value}));
+        let validation = fieldValidator(prop, event.target.value, values.password)
+        setErrors(values => ({...values, [prop]: validation.error}));
+        setHelperText(values => ({...values, [prop]: validation.helperText}));
+    };
 
-    const validatorSetState = (fieldName, value = '', errorField, error = false, helpTextField, helpText = '') => {
-        setValues({
-            ...values,
-            [fieldName]: value,
-            [errorField]: error,
-            [helpTextField]: helpText
-        })
-    }
-
-    const fieldValidator = (fieldName, value = '') => {
-        switch (fieldName) {
-            case 'email':
-                if (!value.match(
-                    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-                )) {
-                    validatorSetState('email', value, 'emailError', true, 'emailText', 'Enter valid email');
-                } else {
-                    validatorSetState('email', value, 'emailError', false, 'emailText', '');
-                }
-                break;
-
-            case 'password':
-                if (!value.match(
-                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,64}$/)) {
-                    validatorSetState('password', value, 'passwordError', true, 'passwordText', `Password must include 8-64 characters: lowercase, uppercase, digit, symbol`);
-                } else {
-                    validatorSetState('password', value, 'passwordError', false, 'passwordText', ``);
-                }
-                break;
-
-            default:
-        }
-
+    const handleSubmit = () => {
+        (formValid()) ?
+            alert(`--Log IN--
+               // First Name: ${values.firstName}
+               // Last Name: ${values.lastName}
+               // Email: ${values.email}
+               // Password: ${values.password}
+               // Confirmed Password ${values.confirmPassword}`)
+            : console.error("FORM INVALID");
     }
 
     const formValid = () => {
-        let valid = false;
-        !values.emailError && !values.passwordError && (valid = true);
-
-        !values.email && !values.password && (valid = false);
+        let valid = false
+        Object.values(errors).map(x => {
+            (x === "") ? valid = true : valid = false
+        });
+        Object.values(values).map(x => {
+            (x === "") ? valid = false : valid = true
+        })
+        console.log(valid)
         return valid;
     }
 
-    const handleSubmit = () => {
-        if (formValid()) {
-            console.log(`--Signing In--
-                Email: ${values.email}
-                Password: ${values.password}`)
-            clearFormFields();
-        } else {
-            console.error("FORM INVALID");
-        }
-    }
-    const handleChange = (prop) => (event) => {
-        setValues({[prop]: event.target.value});
-        fieldValidator(prop, event.target.value);
-    };
-
-    const handleClickShowPassword = () => {
-        setValues({...values, showPassword: !values.showPassword});
-
-    };
-
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-
     return (
-        <div className={classes.root}>
-            <form className={classes.form} onSubmit={handleSubmit}>
-                <h1 className={classes.header}>Please Sign In</h1>
-                <TextField className={classes.email}
-                           id="outlined-basic-email"
-                           label="Email"
-                           variant="outlined"
-                           type="email"
-                           placeholder={`example@gmail.com`}
-                           autoComplete="user-email"
-                           value={values.email}
-                           error={values.emailError}
-                           helperText={values.emailText}
-                           onChange={handleChange('email')}
-                           onKeyUp={handleChange('email')}
-                />
-
-                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-password"
-                        type={values.showPassword ? 'text' : 'password'}
-                        value={values.password}
-                        error={values.passwordError}
-                        onChange={handleChange('password')}
-                        onKeyUp={handleChange('password')}
-                        autoComplete="new-password"
-                        placeholder='8-64, at least one: lowercase, uppercase, digit, symbol'
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
-                                >
-                                    {values.showPassword ? <Visibility/> : <VisibilityOff/>}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        labelWidth={70}
-                    />
-                    <p className={classes.error}
-                       id="outlined-basic-helper-text">{values.passwordText}</p>
-                </FormControl>
-
-                <Button className={classes.button}
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                >
-                    sign up
-                </Button>
-                <Button className={classes.button}
-                        variant="outlined"
-                        color="primary"
-                        onClick={clearFormFields}
-                >
-                    Clear form
-                </Button>
-            </form>
-        </div>
-    );
+        <SignInForm
+            handleChange={handleChange}
+            values={values}
+            onClick={() => {
+                setValues(false)
+            }}
+            errors={errors}
+            helperText={helperText}
+            handleSubmit={handleSubmit}
+        />
+    )
 }
-
-
