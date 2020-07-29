@@ -2,6 +2,7 @@ import React from 'react';
 import {SignUpForm} from "./SignUpForm";
 import {fieldValidator} from "../../Utils/validators";
 
+
 export const SignUpContainer = () => {
     const [values, setValues] = React.useState({
         firstName:'',
