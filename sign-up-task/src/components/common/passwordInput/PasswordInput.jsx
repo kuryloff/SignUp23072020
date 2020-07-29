@@ -7,15 +7,40 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import {useStyles} from "../useStyles/signUpStyles";
+
+
+import {makeStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+      margin: {
+        margin: theme.spacing(1),
+    },
+    withoutLabel: {
+        marginTop: theme.spacing(1),
+    },
+    textField: {
+        width: '100ch',
+        marginTop: theme.spacing(1),
+    },
+        error: {
+        color: '#f44336',
+        fontFamily: 'Roboto',
+        fontSize: "12px",
+        margin: "3px 14px 0px",
+
+    }
+}));
+
 
 
 export const PasswordInput = (props) => {
+    const classes = useStyles();
+
     const [values, setValues] = React.useState({
         showPassword: false,
     });
 
-    const classes = useStyles();
+
 
     const handleClickShowPassword = () => {
         setValues({...values, showPassword: !values.showPassword});

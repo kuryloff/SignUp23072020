@@ -1,7 +1,7 @@
 import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import {fieldValidator} from "../../Utils/validators";
-import {SignInForm} from "./SignIpForm";
+import {SignInForm} from "./SignInForm";
 
 export const SignInContainer = ()=> {
     const [values, setValues] = React.useState({
@@ -45,6 +45,8 @@ export const SignInContainer = ()=> {
             values={values}
             onClick={() => {
                 setValues(false)
+                setErrors(false)
+                setHelperText(false)
             }}
             errors={errors}
             helperText={helperText}

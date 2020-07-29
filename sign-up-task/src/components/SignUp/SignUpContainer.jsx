@@ -47,7 +47,9 @@ export const SignUpContainer = () => {
             handleChange={handleChange}
             values={values}
             onClick={() => {
-                setValues(false)
+                setValues(false);
+                setErrors(false);
+                setHelperText(false)
             }}
             errors={errors}
             helperText={helperText}
