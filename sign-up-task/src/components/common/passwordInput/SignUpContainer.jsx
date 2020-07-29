@@ -11,7 +11,6 @@ import {useStyles} from "../useStyles/signUpStyles";
 
 
 export const PasswordInput = (props) => {
-    // debugger;
     const [values, setValues] = React.useState({
         showPassword: false,
     });

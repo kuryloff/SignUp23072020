@@ -2,7 +2,6 @@ import React from 'react';
 import {SignUpForm} from "./SignUpForm";
 import {fieldValidator} from "../../Utils/validators";
 
-
 export const SignUpContainer = () => {
     const [values, setValues] = React.useState({
         firstName:'',
@@ -12,6 +11,7 @@ export const SignUpContainer = () => {
     });
     const [errors, setErrors] = React.useState(false);
     const [helperText, setHelperText] = React.useState(false);
+
 
     const handleChange = (prop) => (event) => {
         event.persist();

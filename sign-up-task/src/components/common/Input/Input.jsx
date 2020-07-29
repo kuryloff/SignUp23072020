@@ -1,10 +1,8 @@
 import React from 'react';
-import {useStyles} from "../useStyles/signUpStyles";
 import TextField from "@material-ui/core/TextField";
 
 
 export const Input = (props) => {
-    const classes = useStyles();
      return (
         <TextField
             className={props.classes}

@@ -14,10 +14,11 @@ export const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
     },
     withoutLabel: {
-        marginTop: theme.spacing(3),
+        marginTop: theme.spacing(1),
     },
     textField: {
         width: '100ch',
+        marginTop: theme.spacing(1),
     },
     input: {
         margin: theme.spacing(1),
@@ -49,20 +50,7 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: "12px",
         margin: "3px 14px 0px",
 
-    },
-    headerWrapper: {
-        gridArea: "1 / 1 / 2 / 6",
-        backgroundColor: "#dbe0f6",
-        display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "center"
-    },
-
-    item: {
-        margin: "20px",
-        textDecoration: "none",
-        textAlign: "center",
     }
-}));
+   }));
 
 

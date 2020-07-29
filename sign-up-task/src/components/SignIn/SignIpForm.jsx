@@ -2,7 +2,7 @@ import React from 'react';
 import {ButtonMaterial} from "../common/Button/Button";
 import {PasswordInput} from "../common/passwordInput/SignUpContainer";
 import {Input} from "../common/Input/Input";
-import {useStyles} from "../common/useStyles/signInStyles";
+import {useStyles} from "../common/useStyles/signUpStyles";
 
 
 export const SignInForm =(props)=> {
@@ -30,7 +30,7 @@ export const SignInForm =(props)=> {
                     value={props.values.password}
                     error={props.errors.password}
                     helperText={props.helperText.password}
-                    labelWidth={70}
+                    labelWidth={60}
                     handleChange={props.handleChange("password")}
                 />
 
