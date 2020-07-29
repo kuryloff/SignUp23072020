@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from "@material-ui/core/Button";
-import {useStyles} from "../useStyles/loginStyles";
+import {useStyles} from "../useStyles/signUpStyles";
 
 
 export const ButtonMaterial = (props) => {

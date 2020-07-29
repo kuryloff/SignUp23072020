@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
-import {useStyles} from "../common/useStyles/loginStyles";
+import React from 'react';
 import {ButtonMaterial} from "../common/Button/Button";
 import {PasswordInput} from "../common/passwordInput/SignUpContainer";
 import {Input} from "../common/Input/Input";
+import {useStyles} from "../common/useStyles/signInStyles";
 
 
-export default function SignInForm(props) {
+export const SignInForm =(props)=> {
     const classes = useStyles();
 
     return (

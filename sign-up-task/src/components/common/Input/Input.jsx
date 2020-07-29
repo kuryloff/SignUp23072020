@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStyles} from "../useStyles/loginStyles";
+import {useStyles} from "../useStyles/signUpStyles";
 import TextField from "@material-ui/core/TextField";
 
 

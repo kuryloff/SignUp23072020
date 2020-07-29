@@ -7,7 +7,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import {useStyles} from "../useStyles/loginStyles";
+import {useStyles} from "../useStyles/signUpStyles";
 
 
 export const PasswordInput = (props) => {

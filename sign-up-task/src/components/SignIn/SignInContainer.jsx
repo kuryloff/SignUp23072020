@@ -1,26 +1,12 @@
 import React from 'react';
-import clsx from 'clsx';
-import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import {useStyles} from "../common/useStyles/loginStyles";
 import {fieldValidator} from "../../Utils/validators";
-import SignUpForm from "../SignUp/SignUpForm";
-import SignInForm from "./SignIpForm";
+import {SignInForm} from "./SignIpForm";
 
-
-export default function SignInContainer() {
+export const SignInContainer = ()=> {
     const [values, setValues] = React.useState({
-        firstName:'',
-        lastName:'',
+        email:"",
         password:'',
-        confirmPassword:''
     });
     const [errors, setErrors] = React.useState(false);
     const [helperText, setHelperText] = React.useState(false);
@@ -35,12 +21,9 @@ export default function SignInContainer() {
 
     const handleSubmit = () => {
         (formValid()) ?
-            alert(`--Log IN--
-               // First Name: ${values.firstName}
-               // Last Name: ${values.lastName}
+            alert(`--Log in--
                // Email: ${values.email}
-               // Password: ${values.password}
-               // Confirmed Password ${values.confirmPassword}`)
+               // Password: ${values.password}`)
             : console.error("FORM INVALID");
     }
 

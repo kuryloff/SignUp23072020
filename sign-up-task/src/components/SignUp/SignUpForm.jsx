@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useStyles} from "../common/useStyles/loginStyles";
+import {useStyles} from "../common/useStyles/signUpStyles";
 import {ButtonMaterial} from "../common/Button/Button";
 import {PasswordInput} from "../common/passwordInput/SignUpContainer";
 import {Input} from "../common/Input/Input";

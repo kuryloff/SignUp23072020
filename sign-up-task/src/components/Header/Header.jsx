@@ -1,11 +1,13 @@
 import React from 'react';
-import classes from './Header.module.css'
 import {NavLink} from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import {useStyles} from "../common/useStyles/headerStyles";
 
 const Header = () => {
+    const classes = useStyles();
     return (
-        <div className={classes.wrapper}>
+        <div
+            className={classes.headerWrapper}>
             <NavLink to={'/signUp'} className={classes.item}>
                 <Button variant="contained" color="primary">
                     Sign Up
