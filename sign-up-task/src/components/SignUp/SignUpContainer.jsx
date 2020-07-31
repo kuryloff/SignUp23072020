@@ -1,16 +1,19 @@
 import React from 'react';
 import {SignUpForm} from "./SignUpForm";
-import {fieldValidator} from "../../Utils/validators";
+import {fieldValidator, signUpFormValidator} from "../../Utils/validators";
+
 
 export const SignUpContainer = () => {
     const [values, setValues] = React.useState({
-        firstName:'',
-        lastName:'',
-        password:'',
-        confirmPassword:''
+        firstName: '',
+        lastName: '',
+        email: "",
+        password: '',
+        confirmPassword: ''
     });
     const [errors, setErrors] = React.useState(false);
     const [helperText, setHelperText] = React.useState(false);
+    const [submitError, setSubmitError] = React.useState(false);
 
 
     const handleChange = (prop) => (event) => {
@@ -22,38 +25,58 @@ export const SignUpContainer = () => {
     };
 
     const handleSubmit = () => {
-        (formValid()) ?
-            alert(`--SUBMITTING--
-               // First Name: ${values.firstName}
-               // Last Name: ${values.lastName}
-               // Email: ${values.email}
-               // Password: ${values.password}
-               // Confirmed Password ${values.confirmPassword}`)
+            (formValid())
+            ? checkUser({
+                "firstName": `${values.firstName}`,
+                "lastName": `${values.lastName}`,
+                "email": `${values.email}`,
+                "password": `${values.password}`
+            })
             : console.error("FORM INVALID");
+    }
+
+    const checkUser = async (newUser) => {
+        setSubmitError(false);
+        let isUser = await signUpFormValidator(newUser, values.email).then(res => res)
+        isUser ? setSubmitError(true) : clearFormFields();
+        !isUser && alert(`NEW USER
+               FIRST NAME -  ${values.firstName}
+               LAST NAME -  ${values.lastName}
+               EMAIL -  ${values.email}
+               PASSWORD -  ${values.password}
+        `)
     }
 
     const formValid = () => {
         let valid = false
-        Object.values(errors)
-            .map(x => {(x === "") ? valid = true : valid = false});
-        Object.values(values)
-            .map(x => {(x === "") ? valid = false : valid = true});
+        let valueError = true;
+        let noError = true;
+
+        Object.values(errors).forEach(x => x=== true && (valueError=!valueError));
+        Object.values(values).forEach(x => x === "" && (noError =!noError));
+
+        valueError && noError && (valid=!valid)
 
         return valid;
     }
 
+
+    const clearFormFields = () => {
+        setValues(false);
+        setErrors(false);
+        setHelperText(false)
+    }
+
     return (
-        <SignUpForm
-            handleChange={handleChange}
-            values={values}
-            onClick={() => {
-                setValues(false);
-                setErrors(false);
-                setHelperText(false)
-            }}
-            errors={errors}
-            helperText={helperText}
-            handleSubmit={handleSubmit}
-        />
+
+            <SignUpForm
+                submitError={submitError}
+                handleChange={handleChange}
+                values={values}
+                onClick={clearFormFields}
+                errors={errors}
+                helperText={helperText}
+                handleSubmit={handleSubmit}
+            />
     )
 }

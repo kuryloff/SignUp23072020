@@ -1,15 +1,16 @@
 import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
-import {fieldValidator} from "../../Utils/validators";
+import {fieldValidator, signInFormValidator, signUpFormValidator} from "../../Utils/validators";
 import {SignInForm} from "./SignInForm";
 
-export const SignInContainer = ()=> {
+export const SignInContainer = () => {
     const [values, setValues] = React.useState({
-        email:"",
-        password:'',
+        email: "",
+        password: '',
     });
     const [errors, setErrors] = React.useState(false);
     const [helperText, setHelperText] = React.useState(false);
+    const [submitError, setSubmitError] = React.useState(false);
 
     const handleChange = (prop) => (event) => {
         event.persist();
@@ -20,34 +21,48 @@ export const SignInContainer = ()=> {
     };
 
     const handleSubmit = () => {
-        (formValid()) ?
-            alert(`--Log in--
-               // Email: ${values.email}
-               // Password: ${values.password}`)
+        (formValid())
+            ? checkUser({
+                "email": `${values.email}`,
+                "password": `${values.password}`
+            })
             : console.error("FORM INVALID");
+    }
+
+
+    const checkUser = async (user) => {
+        setSubmitError(false);
+        let isUser = await signInFormValidator(user, values.email, values.password);
+        (isUser.email && isUser.password) ? clearFormFields() :setSubmitError(true);
+        (isUser.email && isUser.password) && alert(`LOGIN SUCCESS`)
+        debugger;
     }
 
     const formValid = () => {
         let valid = false
-        Object.values(errors).map(x => {
-            (x === "") ? valid = true : valid = false
-        });
-        Object.values(values).map(x => {
-            (x === "") ? valid = false : valid = true
-        })
-        console.log(valid)
+        let valueError = true;
+        let noError = true;
+
+        Object.values(errors).forEach(x => x=== true && (valueError=!valueError));
+        Object.values(values).forEach(x => x === "" && (noError =!noError));
+
+        valueError && noError && (valid=!valid)
+
         return valid;
+    }
+
+    const clearFormFields = () => {
+        setValues(false);
+        setErrors(false);
+        setHelperText(false)
     }
 
     return (
         <SignInForm
+            submitError={submitError}
             handleChange={handleChange}
             values={values}
-            onClick={() => {
-                setValues(false)
-                setErrors(false)
-                setHelperText(false)
-            }}
+            onClick={clearFormFields}
             errors={errors}
             helperText={helperText}
             handleSubmit={handleSubmit}

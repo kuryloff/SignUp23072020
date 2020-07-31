@@ -56,6 +56,11 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "12px",
         margin: "3px 14px 0px",
 
+    },
+    errorSubmit: {
+        color: "red",
+        width: "100%",
+        textAlign: "center"
     }
 }));
 
@@ -65,9 +70,10 @@ export const SignUpForm = (props) => {
 
     return (
         <div className={classes.root}>
+            {(props.submitError) &&
+            <h4 className={classes.errorSubmit}> This email is already registered. Enter different email</h4>}
             <form className={classes.form} onSubmit={props.handleSubmit}>
                 <h1 className={classes.header}>Please Sign Up</h1>
-
                 <Input
                     classes={classes.input}
                     label="First Name"
