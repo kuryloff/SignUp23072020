@@ -50,10 +50,9 @@ export const signUpFormValidator = async (newUser, email) => {
 
 export const signInFormValidator = async (input, email, password) => {
     let users = await signUpAPI.getUsers();
-    debugger;
-    let correctEmail = emailValidator(users, email)
-    debugger;
-    let correctPassword = passwordValidator(users, password, correctEmail);
+    let user = emailValidator(users, email) || ""
+    let correctEmail = users.some(user => user.email === email)
+    let correctPassword = passwordValidator(user, password)
 
     return {
         email: correctEmail,
@@ -61,6 +60,11 @@ export const signInFormValidator = async (input, email, password) => {
     }
 }
 
-const emailValidator = (users, email) => users.map(user => (user.email === email) ? user.id : false)
+const emailValidator = (users, email) => {
+    let userToCheck;
+    users.forEach(user => user.email === email && (userToCheck = user))
+    return userToCheck;
+};
 
-const passwordValidator = (users, password, userId) => users.some(user => user.password === password && userId ===user.id)
+
+const passwordValidator = (user, password) => (user.password === password)

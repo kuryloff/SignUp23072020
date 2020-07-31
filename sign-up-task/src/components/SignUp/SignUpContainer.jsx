@@ -77,6 +77,8 @@ export const SignUpContainer = () => {
                 errors={errors}
                 helperText={helperText}
                 handleSubmit={handleSubmit}
+                buttonText="Sign Up"
+                clearForm = 'Clear form'
             />
     )
 }

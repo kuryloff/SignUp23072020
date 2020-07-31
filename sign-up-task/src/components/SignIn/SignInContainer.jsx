@@ -1,6 +1,5 @@
 import React from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import {fieldValidator, signInFormValidator, signUpFormValidator} from "../../Utils/validators";
+import {fieldValidator, signInFormValidator} from "../../Utils/validators";
 import {SignInForm} from "./SignInForm";
 
 export const SignInContainer = () => {
@@ -10,7 +9,9 @@ export const SignInContainer = () => {
     });
     const [errors, setErrors] = React.useState(false);
     const [helperText, setHelperText] = React.useState(false);
-    const [submitError, setSubmitError] = React.useState(false);
+    const [emailCheckError, setEmailCheckError] = React.useState(false);
+    const [passwordCheckError, setPasswordCheckError] = React.useState(false);
+    // const [submitError, setSubmitError] = React.useState(false);
 
     const handleChange = (prop) => (event) => {
         event.persist();
@@ -31,11 +32,16 @@ export const SignInContainer = () => {
 
 
     const checkUser = async (user) => {
-        setSubmitError(false);
+        setEmailCheckError(false);
+        setPasswordCheckError(false);
+        // setSubmitError(false);
+
         let isUser = await signInFormValidator(user, values.email, values.password);
-        (isUser.email && isUser.password) ? clearFormFields() :setSubmitError(true);
-        (isUser.email && isUser.password) && alert(`LOGIN SUCCESS`)
-        debugger;
+        !isUser.email && setEmailCheckError(true);
+        !isUser.password && setPasswordCheckError(true);
+        // (isUser.email && isUser.password) ? clearFormFields() :setSubmitError(true);
+        (isUser.email && isUser.password) && clearFormFields();
+        isUser.email && isUser.password && alert("Login Success");
     }
 
     const formValid = () => {
@@ -59,13 +65,17 @@ export const SignInContainer = () => {
 
     return (
         <SignInForm
-            submitError={submitError}
+            // submitError={submitError}
             handleChange={handleChange}
             values={values}
             onClick={clearFormFields}
             errors={errors}
             helperText={helperText}
             handleSubmit={handleSubmit}
+            emailCheckError={emailCheckError}
+            passwordCheckError={passwordCheckError}
+            buttonText="Sign In"
+            clearForm = 'Clear form'
         />
     )
 }

@@ -131,7 +131,7 @@ export const SignUpForm = (props) => {
                     variant='contained'
                     color="primary"
                     type="submit"
-                    text="Sign up"
+                    buttonText={props.buttonText}
                 />
 
                 <ButtonMaterial
@@ -139,7 +139,7 @@ export const SignUpForm = (props) => {
                     color="primary"
                     type="button"
                     onClick={props.onClick}
-                    text="Clear form"
+                    buttonText={props.clearForm}
 
                 />
             </form>
