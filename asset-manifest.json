@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/SignUp23072020/static/css/main.89cefa0a.chunk.css",
-    "main.js": "/SignUp23072020/static/js/main.f118208a.chunk.js",
-    "main.js.map": "/SignUp23072020/static/js/main.f118208a.chunk.js.map",
+    "main.js": "/SignUp23072020/static/js/main.1da7d9f3.chunk.js",
+    "main.js.map": "/SignUp23072020/static/js/main.1da7d9f3.chunk.js.map",
     "runtime-main.js": "/SignUp23072020/static/js/runtime-main.3eac6b63.js",
     "runtime-main.js.map": "/SignUp23072020/static/js/runtime-main.3eac6b63.js.map",
     "static/js/2.2e9ba8ee.chunk.js": "/SignUp23072020/static/js/2.2e9ba8ee.chunk.js",
     "static/js/2.2e9ba8ee.chunk.js.map": "/SignUp23072020/static/js/2.2e9ba8ee.chunk.js.map",
     "index.html": "/SignUp23072020/index.html",
-    "precache-manifest.74003b3452896d705aacb267263b1e03.js": "/SignUp23072020/precache-manifest.74003b3452896d705aacb267263b1e03.js",
+    "precache-manifest.f416738e18eaebd8a70ba91f79b99f8e.js": "/SignUp23072020/precache-manifest.f416738e18eaebd8a70ba91f79b99f8e.js",
     "service-worker.js": "/SignUp23072020/service-worker.js",
     "static/css/main.89cefa0a.chunk.css.map": "/SignUp23072020/static/css/main.89cefa0a.chunk.css.map",
     "static/js/2.2e9ba8ee.chunk.js.LICENSE.txt": "/SignUp23072020/static/js/2.2e9ba8ee.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.3eac6b63.js",
     "static/js/2.2e9ba8ee.chunk.js",
     "static/css/main.89cefa0a.chunk.css",
-    "static/js/main.f118208a.chunk.js"
+    "static/js/main.1da7d9f3.chunk.js"
   ]
 }
