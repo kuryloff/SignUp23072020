@@ -11,7 +11,6 @@ export const SignInContainer = () => {
     const [helperText, setHelperText] = React.useState(false);
     const [emailCheckError, setEmailCheckError] = React.useState(false);
     const [passwordCheckError, setPasswordCheckError] = React.useState(false);
-    // const [submitError, setSubmitError] = React.useState(false);
 
     const handleChange = (prop) => (event) => {
         event.persist();
@@ -39,7 +38,6 @@ export const SignInContainer = () => {
         let isUser = await signInFormValidator(user, values.email, values.password);
         !isUser.email && setEmailCheckError(true);
         !isUser.password && setPasswordCheckError(true);
-        // (isUser.email && isUser.password) ? clearFormFields() :setSubmitError(true);
         (isUser.email && isUser.password) && clearFormFields();
         isUser.email && isUser.password && alert("Login Success");
     }
@@ -65,7 +63,6 @@ export const SignInContainer = () => {
 
     return (
         <SignInForm
-            // submitError={submitError}
             handleChange={handleChange}
             values={values}
             onClick={clearFormFields}

@@ -62,7 +62,6 @@ export const SignInForm =(props)=> {
     return (
         <div className={classes.root}>
             {(props.emailCheckError) && <h4 className={classes.errorSubmit}> This email is not registered. Please enter correct email or Sign In</h4>}
-            {/*{(props.submitError) && <h4 className={classes.errorSubmit}> This email is not registered. Please enter correct email or Sign In</h4>}*/}
             {(props.passwordCheckError) && <h4 className={classes.errorSubmit}> Wrong password</h4>}
 
             <form className={classes.form} onSubmit={props.handleSubmit}>
