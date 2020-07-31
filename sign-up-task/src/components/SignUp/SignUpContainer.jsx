@@ -34,10 +34,13 @@ export const SignUpContainer = () => {
 
     const formValid = () => {
         let valid = false
-        Object.values(errors)
-            .map(x => {(x === "") ? valid = true : valid = false});
-        Object.values(values)
-            .map(x => {(x === "") ? valid = false : valid = true});
+        let valueError = true;
+        let noError = true;
+
+        Object.values(errors).forEach(x => x=== true && (valueError=!valueError));
+        Object.values(values).forEach(x => x === "" && (noError =!noError));
+
+        valueError && noError && (valid=!valid)
 
         return valid;
     }
