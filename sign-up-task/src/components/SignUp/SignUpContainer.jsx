@@ -1,6 +1,6 @@
 import React from 'react';
 import {SignUpForm} from "./SignUpForm";
-import {fieldValidator, signUpFormValidator} from "../../Utils/validators";
+import {EmailDBValidation, fieldValidator} from "../../Utils/validators";
 
 
 export const SignUpContainer = () => {
@@ -37,7 +37,9 @@ export const SignUpContainer = () => {
 
     const checkUser = async (newUser) => {
         setSubmitError(false);
-        let isUser = await signUpFormValidator(newUser, values.email).then(res => res)
+
+        let isUser = await EmailDBValidation(newUser, values.email).then(res => res)
+
         isUser ? setSubmitError(true) : clearFormFields();
         !isUser && alert(`NEW USER
                FIRST NAME -  ${values.firstName}

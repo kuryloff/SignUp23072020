@@ -1,5 +1,5 @@
 import React from 'react';
-import {fieldValidator, signInFormValidator} from "../../Utils/validators";
+import {fieldValidator, signInFormValidator, userDBValidator} from "../../Utils/validators";
 import {SignInForm} from "./SignInForm";
 
 export const SignInContainer = () => {
@@ -33,14 +33,17 @@ export const SignInContainer = () => {
     const checkUser = async (user) => {
         setEmailCheckError(false);
         setPasswordCheckError(false);
-        // setSubmitError(false);
 
-        let isUser = await signInFormValidator(user, values.email, values.password);
+        let isUser = await userDBValidator(values.email, values.password);
+
         !isUser.email && setEmailCheckError(true);
         !isUser.password && setPasswordCheckError(true);
         (isUser.email && isUser.password) && clearFormFields();
         isUser.email && isUser.password && alert("Login Success");
     }
+
+
+
 
     const formValid = () => {
         let valid = false
