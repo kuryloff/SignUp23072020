@@ -1,8 +1,11 @@
 import React from 'react';
 import {fieldValidator, signInFormValidator, userDBValidator} from "../../Utils/validators";
 import {SignInForm} from "./SignInForm";
+import {connect} from "react-redux";
+import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
+import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
 
-export const SignInContainer = () => {
+const SignInContainer = () => {
     const [values, setValues] = React.useState({
         email: "",
         password: '',
@@ -50,8 +53,8 @@ export const SignInContainer = () => {
         let valueError = true;
         let noError = true;
 
-        Object.values(errors).forEach(x => x=== true && (valueError=!valueError));
-        Object.values(values).forEach(x => x === "" && (noError =!noError));
+        Object.values(errors).forEach(x => x===true && (valueError=false));
+        Object.values(values).forEach(x => x==="" && (noError =false));
 
         valueError && noError && (valid=!valid)
 
@@ -79,3 +82,6 @@ export const SignInContainer = () => {
         />
     )
 }
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer);

@@ -1,86 +1,58 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SignUpForm} from "./SignUpForm";
-import {EmailDBValidation, fieldValidator} from "../../Utils/validators";
+import { formValidator} from "../../Utils/validators";
+import {connect} from "react-redux";
+import {checkEmailDB, fieldOnChange, setClearForm} from "../../redux/signUp-reducer";
+import {
+    getEmailExist,
+    getErrors,
+    getHelperText,
+    getIsValidForm,
+    getValues
+} from "../../redux/signUp-selectors";
 
 
-export const SignUpContainer = () => {
-    const [values, setValues] = React.useState({
-        firstName: '',
-        lastName: '',
-        email: "",
-        password: '',
-        confirmPassword: ''
-    });
-    const [errors, setErrors] = React.useState(false);
-    const [helperText, setHelperText] = React.useState(false);
-    const [submitError, setSubmitError] = React.useState(false);
+const SignUpContainer = (props) => {
 
-
-    const handleChange = (prop) => (event) => {
-        event.persist();
-        setValues(values => ({...values, [prop]: event.target.value}));
-        let validation = fieldValidator(prop, event.target.value, values.password)
-        setErrors(values => ({...values, [prop]: validation.error}));
-        setHelperText(values => ({...values, [prop]: validation.helperText}));
+    const handleChange = (field) => (e) => {
+        let password = props.values.password;
+        let value = e.target.value
+        props.fieldOnChange(field, value, password)
     };
 
     const handleSubmit = () => {
-            (formValid())
-            ? checkUser({
-                "firstName": `${values.firstName}`,
-                "lastName": `${values.lastName}`,
-                "email": `${values.email}`,
-                "password": `${values.password}`
-            })
-            : console.error("FORM INVALID");
+        let isValid = formValidator(props.errors, props.values);
+        isValid && props.checkEmailDB(props.values);
+        !isValid && console.log("INVALID")
     }
 
-    const checkUser = async (newUser) => {
-        setSubmitError(false);
-
-        let isUser = await EmailDBValidation(newUser, values.email).then(res => res)
-
-        isUser ? setSubmitError(true) : clearFormFields();
-        !isUser && alert(`NEW USER
-               FIRST NAME -  ${values.firstName}
-               LAST NAME -  ${values.lastName}
-               EMAIL -  ${values.email}
-               PASSWORD -  ${values.password}
-        `)
-    }
-
-    const formValid = () => {
-        let valid = false
-        let valueError = true;
-        let noError = true;
-
-        Object.values(errors).forEach(x => x=== true && (valueError=!valueError));
-        Object.values(values).forEach(x => x === "" && (noError =!noError));
-
-        valueError && noError && (valid=!valid)
-
-        return valid;
-    }
-
-
-    const clearFormFields = () => {
-        setValues(false);
-        setErrors(false);
-        setHelperText(false)
-    }
 
     return (
-
-            <SignUpForm
-                submitError={submitError}
-                handleChange={handleChange}
-                values={values}
-                onClick={clearFormFields}
-                errors={errors}
-                helperText={helperText}
-                handleSubmit={handleSubmit}
-                buttonText="Sign Up"
-                clearForm = 'Clear form'
-            />
+        <SignUpForm
+            submitError={props.emailExist}
+            handleChange={handleChange}
+            values={props.values}
+            onClick={props.setClearForm}
+            errors={props.errors}
+            helperText={props.helperText}
+            handleSubmit={handleSubmit}
+            buttonText="Sign Up"
+            clearForm='Clear form'
+        />
     )
-}
+};
+
+let mapStateToProps = (state) => {
+
+    return {
+        emailExist: getEmailExist(state),
+        values: getValues(state),
+        errors: getErrors(state),
+        helperText: getHelperText(state),
+        isValidForm: getIsValidForm(state),
+    }
+};
+
+
+export default connect(mapStateToProps,
+    {fieldOnChange, checkEmailDB, setClearForm})(SignUpContainer);

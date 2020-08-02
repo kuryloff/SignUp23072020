@@ -24,9 +24,42 @@
     {
       "firstName": "Ігор",
       "lastName": "Курильов",
-      "email": "kuryloff@gmail.com",
-      "password": "qweASD123@",
+      "email": "kuryvdfbdfbfdbloff@gmail.com",
+      "password": "asdQWE123@",
+      "confirmPassword": "asdQWE123@",
       "id": 3
+    },
+    {
+      "firstName": "Ігор",
+      "lastName": "Курильов",
+      "email": "kuryfdfbdfbdfloff@gmail.com",
+      "password": "asdQWE123@",
+      "confirmPassword": "asdQWE123@",
+      "id": 4
+    },
+    {
+      "firstName": "Ігор",
+      "lastName": "Курильов",
+      "email": "kurylobdfff@gmail.combdfbdfbdfb",
+      "password": "asdQWE123@",
+      "confirmPassword": "asdQWE123@",
+      "id": 5
+    },
+    {
+      "firstName": "Ігор",
+      "lastName": "Курильов",
+      "email": "ksdgsfgnfcnuryloff@gmail.com",
+      "password": "asdQWE123@",
+      "confirmPassword": "asdQWE123@",
+      "id": 6
+    },
+    {
+      "firstName": "Ігор",
+      "lastName": "Курильов",
+      "email": "kuryloffgnfgndfgdfbfd@gmail.com",
+      "password": "asdQWE123@",
+      "confirmPassword": "asdQWE123@",
+      "id": 7
     }
   ]
 }

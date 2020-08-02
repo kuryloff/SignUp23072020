@@ -3,12 +3,16 @@ import './App.css';
 import Header from "./components/Header/Header";
 import {HashRouter, Route} from "react-router-dom";
 import {withSuspense} from "./hoc/withSuspense";
-import {SignInContainer} from "./components/SignIn/SignInContainer";
-import {SignUpContainer} from "./components/SignUp/SignUpContainer";
+import SignUpContainer from "./components/SignUp/SignUpContainer";
+import SignInContainer from "./components/SignIn/SignInContainer";
+import store from "./redux/redux-store";
+import {Provider} from "react-redux";
+
 
 const App = () => {
     return (
         <HashRouter>
+            <Provider store={store}>
             <div className='wrapper'>
                 <Header/>
                 <div className="content">
@@ -19,6 +23,7 @@ const App = () => {
                            render={withSuspense(SignInContainer)}/>
                 </div>
             </div>
+            </Provider>
         </HashRouter>
     )
 };

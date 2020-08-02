@@ -20,7 +20,6 @@ export const fieldValidator = (fieldName, value = '', passwordValue = '') => {
                     : {error: false, helperText: ''})
 
         case 'password':
-
             return (value === "")
                 ? {error: true, helperText: 'Field is empty'}
                 : ((!value.match(
@@ -41,19 +40,19 @@ export const fieldValidator = (fieldName, value = '', passwordValue = '') => {
     }
 }
 
-export const EmailDBValidation = async (newUser, email) => {
-    let users = await signUpAPI.getUsers();
-    let isUser = users.some(user => user.email === email)
-    isUser && signUpAPI.setUser(newUser)
-    return isUser;
+
+export const formValidator = (errors, values) => {
+    let valid = false;
+   !Object.values(errors).some(x => x === true) && !Object.values(values).some(x => x === "")  && (valid = true);
+    return valid
 }
+
 
 export const userDBValidator = async (email, password) => {
     let users = await signUpAPI.getUsers();
     let user = (emailDBValidator(users, email) || "")
-
     let correctEmail = users.some(user => user.email === email)
-    let correctPassword = (()=>(user.password === password))(user, password)
+    let correctPassword = (() => (user.password === password))(user, password)
 
     return {
         email: correctEmail,
@@ -67,5 +66,4 @@ const emailDBValidator = (users, email) => {
     return userToCheck;
 };
 
-
-const passwordDBValidator = (user, password) =>  (user.password === password)
+const passwordDBValidator = (user, password) => (user.password === password)
