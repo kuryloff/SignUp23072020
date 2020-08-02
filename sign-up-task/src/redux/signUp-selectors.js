@@ -13,7 +13,3 @@ export const getErrors = (state) => {
 export const getHelperText= (state) => {
     return state.signUp.helperText
 };
-
-export const getIsValidForm = (state) => {
-    return state.signUp.isValidForm
-};

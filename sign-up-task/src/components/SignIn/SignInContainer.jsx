@@ -1,87 +1,58 @@
 import React from 'react';
-import {fieldValidator, signInFormValidator, userDBValidator} from "../../Utils/validators";
 import {SignInForm} from "./SignInForm";
 import {connect} from "react-redux";
-import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
-import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
+import {
+    getCorrectEmail,
+    getCorrectPassword,
+    getErrors,
+    getHelperText,
+    getLoginSuccess,
+    getValues
+} from "../../redux/signIn-selectors";
+import {checkUserDB, fieldOnChange, setClearForm} from "../../redux/signIn-reducer";
+import {formValidator} from "../../Utils/validators";
 
-const SignInContainer = () => {
-    const [values, setValues] = React.useState({
-        email: "",
-        password: '',
-    });
-    const [errors, setErrors] = React.useState(false);
-    const [helperText, setHelperText] = React.useState(false);
-    const [emailCheckError, setEmailCheckError] = React.useState(false);
-    const [passwordCheckError, setPasswordCheckError] = React.useState(false);
+const SignInContainer = (props) => {
 
-    const handleChange = (prop) => (event) => {
-        event.persist();
-        setValues(values => ({...values, [prop]: event.target.value}));
-        let validation = fieldValidator(prop, event.target.value, values.password)
-        setErrors(values => ({...values, [prop]: validation.error}));
-        setHelperText(values => ({...values, [prop]: validation.helperText}));
+    const handleChange = (field) => (e) => {
+        let password = props.values.password;
+        let value = e.target.value;
+        props.fieldOnChange(field, value, password);
     };
 
     const handleSubmit = () => {
-        (formValid())
-            ? checkUser({
-                "email": `${values.email}`,
-                "password": `${values.password}`
-            })
-            : console.error("FORM INVALID");
-    }
-
-
-    const checkUser = async (user) => {
-        setEmailCheckError(false);
-        setPasswordCheckError(false);
-
-        let isUser = await userDBValidator(values.email, values.password);
-
-        !isUser.email && setEmailCheckError(true);
-        !isUser.password && setPasswordCheckError(true);
-        (isUser.email && isUser.password) && clearFormFields();
-        isUser.email && isUser.password && alert("Login Success");
-    }
-
-
-
-
-    const formValid = () => {
-        let valid = false
-        let valueError = true;
-        let noError = true;
-
-        Object.values(errors).forEach(x => x===true && (valueError=false));
-        Object.values(values).forEach(x => x==="" && (noError =false));
-
-        valueError && noError && (valid=!valid)
-
-        return valid;
-    }
-
-    const clearFormFields = () => {
-        setValues(false);
-        setErrors(false);
-        setHelperText(false)
+        let isValid = formValidator(props.errors, props.values);
+        isValid && props.checkUserDB(props.values);
+        !isValid && console.log("INVALID SIGN IN");
     }
 
     return (
         <SignInForm
             handleChange={handleChange}
-            values={values}
-            onClick={clearFormFields}
-            errors={errors}
-            helperText={helperText}
+            values={props.values}
+            onClick={props.setClearForm}
+            errors={props.errors}
+            helperText={props.helperText}
             handleSubmit={handleSubmit}
-            emailCheckError={emailCheckError}
-            passwordCheckError={passwordCheckError}
+            correctEmail={props.correctEmail}
+            correctPassword={props.correctPassword}
             buttonText="Sign In"
             clearForm = 'Clear form'
+            loginSuccess = {props.loginSuccess}
         />
     )
 }
 
+let mapStateToProps = (state) => {
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer);
+    return {
+        values: getValues(state),
+        errors: getErrors(state),
+        helperText: getHelperText(state),
+        correctEmail:getCorrectEmail(state),
+        correctPassword: getCorrectPassword(state),
+        loginSuccess: getLoginSuccess(state)
+    }
+};
+
+export default connect(mapStateToProps, {fieldOnChange, setClearForm, checkUserDB})(SignInContainer);

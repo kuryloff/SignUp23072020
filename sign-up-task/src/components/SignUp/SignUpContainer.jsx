@@ -7,7 +7,6 @@ import {
     getEmailExist,
     getErrors,
     getHelperText,
-    getIsValidForm,
     getValues
 } from "../../redux/signUp-selectors";
 
@@ -16,14 +15,14 @@ const SignUpContainer = (props) => {
 
     const handleChange = (field) => (e) => {
         let password = props.values.password;
-        let value = e.target.value
-        props.fieldOnChange(field, value, password)
+        let value = e.target.value;
+        props.fieldOnChange(field, value, password);
     };
 
     const handleSubmit = () => {
         let isValid = formValidator(props.errors, props.values);
         isValid && props.checkEmailDB(props.values);
-        !isValid && console.log("INVALID")
+        !isValid && console.log("INVALID");
     }
 
 
@@ -49,7 +48,6 @@ let mapStateToProps = (state) => {
         values: getValues(state),
         errors: getErrors(state),
         helperText: getHelperText(state),
-        isValidForm: getIsValidForm(state),
     }
 };
 

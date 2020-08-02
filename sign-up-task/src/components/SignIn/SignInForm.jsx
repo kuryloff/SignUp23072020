@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         boxShadow: "0px 5px 10px #555"
     },
-   error: {
+    error: {
         color: '#f44336',
         fontFamily: 'Roboto',
         fontSize: "12px",
@@ -49,20 +49,23 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         fontFamily: "Roboto",
     },
-    errorSubmit:{
+    errorSubmit: {
         color: "red",
         width: "100%",
         textAlign: "center"
     }
 }));
 
-export const SignInForm =(props)=> {
+export const SignInForm = (props) => {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            {(props.emailCheckError) && <h4 className={classes.errorSubmit}> This email is not registered. Please enter correct email or Sign In</h4>}
-            {(props.passwordCheckError) && <h4 className={classes.errorSubmit}> Wrong password</h4>}
+            {(!props.correctEmail) &&
+            <h4 className={classes.errorSubmit}> This email is not registered. Please enter correct email or Sign
+                In</h4>}
+            {(!props.correctPassword) && <h4 className={classes.errorSubmit}> Wrong password</h4>}
+            {(props.loginSuccess) && <h4 className={classes.errorSubmit}> !!! Successful LOGIN !!!</h4>}
 
             <form className={classes.form} onSubmit={props.handleSubmit}>
                 <h1 className={classes.header}>Please Sign In</h1>

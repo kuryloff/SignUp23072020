@@ -1,5 +1,3 @@
-import {signUpAPI} from "../api/api";
-
 export const fieldValidator = (fieldName, value = '', passwordValue = '') => {
     switch (fieldName) {
         case 'firstName':
@@ -46,24 +44,3 @@ export const formValidator = (errors, values) => {
    !Object.values(errors).some(x => x === true) && !Object.values(values).some(x => x === "")  && (valid = true);
     return valid
 }
-
-
-export const userDBValidator = async (email, password) => {
-    let users = await signUpAPI.getUsers();
-    let user = (emailDBValidator(users, email) || "")
-    let correctEmail = users.some(user => user.email === email)
-    let correctPassword = (() => (user.password === password))(user, password)
-
-    return {
-        email: correctEmail,
-        password: correctPassword
-    }
-}
-
-const emailDBValidator = (users, email) => {
-    let userToCheck;
-    users.forEach(user => user.email === email && (userToCheck = user))
-    return userToCheck;
-};
-
-const passwordDBValidator = (user, password) => (user.password === password)

@@ -1,13 +1,11 @@
 import {fieldValidator} from "../Utils/validators";
-import {signUpAPI} from "../api/api";
+import {usersAPI} from "../api/api";
 
-const SET_NEW_USER = 'sign-up-task/signUP/SET_USERS';
-const SET_VALUE = 'sign-up-task/signUP/SET_VALUE';
-const SET_ERROR = 'sign-up-task/signUP/SET_ERROR';
-const SET_HELPER_TEXT = 'sign-up-task/signUP/SET_HELPER_TEXT';
-const SET_IS_VALID_FORM = 'sign-up-task/signUP/SET_IS_VALID_FORM';
-const SET_EMAIL_EXIST = 'sign-up-task/signUP/SET_EMAIL_EXIST';
-const SET_CLEAR_FORM = 'sign-up-task/signUP/SET_CLEAR_FORM';
+const SET_VALUE = 'sign-up-task/signUp/SET_VALUE';
+const SET_ERROR = 'sign-up-task/signUp/SET_ERROR';
+const SET_HELPER_TEXT = 'sign-up-task/signUp/SET_HELPER_TEXT';
+const SET_EMAIL_EXIST = 'sign-up-task/signUp/SET_EMAIL_EXIST';
+const SET_CLEAR_FORM = 'sign-up-task/signUp/SET_CLEAR_FORM';
 
 let initialState = {
     values: {
@@ -36,16 +34,6 @@ let initialState = {
 
 const signUpReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_NEW_USER:
-            return {
-                ...state,
-                newUser: action.user,
-            }
-        case SET_IS_VALID_FORM:
-            return {
-                ...state,
-                isValidForm: action.valid,
-            }
         case SET_VALUE:
             return {
                 ...state,
@@ -91,10 +79,10 @@ export const fieldOnChange = (field, value, password) => (dispatch) => {
 }
 
 export const checkEmailDB = (values) => async (dispatch) => {
-    let users = await signUpAPI.getUsers();
+    let users = await usersAPI.getUsers();
     users.some(u => u.email === values.email)
         ? dispatch(setEmailExist(true))
-        : (dispatch(setEmailExist(false)) && dispatch(setClearForm()) && await signUpAPI.setUser(values))
+        : (dispatch(setEmailExist(false)) && dispatch(setClearForm()) && await usersAPI.setUser(values))
 };
 
 

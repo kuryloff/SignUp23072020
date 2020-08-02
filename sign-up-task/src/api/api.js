@@ -4,7 +4,7 @@ const instance = axios.create({
     baseURL: `http://localhost:3004`
 })
 
-export const signUpAPI = {
+export const usersAPI = {
     setUser(user) {
         return instance.post(`/users`, user, {
             'Content-Type': 'application/json'
