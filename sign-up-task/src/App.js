@@ -3,8 +3,8 @@ import './App.css';
 import Header from "./components/Header/Header";
 import {HashRouter, Route} from "react-router-dom";
 import {withSuspense} from "./hoc/withSuspense";
-import SignUpContainer from "./components/SignUp/SignUpContainer";
-import SignInContainer from "./components/SignIn/SignInContainer";
+import SignUpContainer from "./components/SignUp/SignUp";
+import SignInContainer from "./components/SignIn/SignIn";
 import store from "./redux/redux-store";
 import {Provider} from "react-redux";
 
@@ -19,8 +19,8 @@ const App = () => {
                     <h1>To proceed, please Sign In or Sign Up</h1>
                     <Route path={'/signUp'}
                            render={withSuspense(SignUpContainer)}/>
-                    {/*<Route path={'/signIn'}*/}
-                    {/*       render={withSuspense(SignInContainer)}/>*/}
+                    <Route path={'/signIn'}
+                           render={withSuspense(SignInContainer)}/>
                 </div>
             </div>
             </Provider>
