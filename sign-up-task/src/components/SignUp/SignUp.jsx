@@ -25,8 +25,8 @@ const SignUp = (props) => {
             ? setConfirmPasswordValue(e.target.value)
             : props.setValue(field, e.target.value)
         let validation = fieldValidator(field, e.target.value, props.values.password)
-        setError(values => ({...values, [field]: validation.error}));
-        setHelperText(values => ({...values, [field]: validation.helperText}));
+        // setError(values => ({...values, [field]: validation.error}));
+        // setHelperText(values => ({...values, [field]: validation.helperText}));
     };
 
     const handleSubmit = () => {
@@ -61,7 +61,7 @@ const SignUp = (props) => {
             values={props.values}
             confirmPasswordValue={confirmPasswordValue}
             onClick={clearFormFields}
-            errors={error}
+            errors={validation.error}
             helperText={helperText}
             handleSubmit={handleSubmit}
             buttonText="Sign Up"
