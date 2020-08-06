@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <div
             className={classes.headerWrapper}>
-            <h1>SUP - 2</h1>
+            <h1>SUP - 3</h1>
             <NavLink to={'/signUp'} className={classes.item}>
                 <Button variant="contained" color="primary">
                     Sign Up

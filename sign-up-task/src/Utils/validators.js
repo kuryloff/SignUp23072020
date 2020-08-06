@@ -1,5 +1,7 @@
+import {signUpAPI} from "../api/api";
+
 export const fieldValidator = (fieldName, value = '', passwordValue = '') => {
-     switch (fieldName) {
+    switch (fieldName) {
         case 'firstName':
         case 'lastName':
             return (value === "")
@@ -37,5 +39,32 @@ export const fieldValidator = (fieldName, value = '', passwordValue = '') => {
 
         default:
     }
-
 }
+
+export const signUpFormValidator = async (newUser, email) => {
+    let users = await signUpAPI.getUsers();
+    let isUser = users.some(user => user.email === email)
+    isUser && signUpAPI.setUser(newUser)
+    return isUser;
+}
+
+export const signInFormValidator = async (input, email, password) => {
+    let users = await signUpAPI.getUsers();
+    let user = emailValidator(users, email) || ""
+    let correctEmail = users.some(user => user.email === email)
+    let correctPassword = passwordValidator(user, password)
+
+    return {
+        email: correctEmail,
+        password: correctPassword
+    }
+}
+
+const emailValidator = (users, email) => {
+    let userToCheck;
+    users.forEach(user => user.email === email && (userToCheck = user))
+    return userToCheck;
+};
+
+
+const passwordValidator = (user, password) => (user.password === password)

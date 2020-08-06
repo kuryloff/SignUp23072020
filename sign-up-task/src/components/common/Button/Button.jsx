@@ -23,7 +23,7 @@ export const ButtonMaterial = (props) => {
                 type={props.type}
                 onClick={props.onClick}
         >
-            {props.text}
+            {props.buttonText}
         </Button>
     );
 }

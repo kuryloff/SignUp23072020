@@ -38,13 +38,21 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         boxShadow: "0px 5px 10px #555"
     },
-
-    error: {
+   error: {
         color: '#f44336',
         fontFamily: 'Roboto',
         fontSize: "12px",
         margin: "3px 14px 0px",
-
+    },
+    header: {
+        width: "100%",
+        textAlign: 'center',
+        fontFamily: "Roboto",
+    },
+    errorSubmit:{
+        color: "red",
+        width: "100%",
+        textAlign: "center"
     }
 }));
 
@@ -53,6 +61,9 @@ export const SignInForm =(props)=> {
 
     return (
         <div className={classes.root}>
+            {(props.emailCheckError) && <h4 className={classes.errorSubmit}> This email is not registered. Please enter correct email or Sign In</h4>}
+            {(props.passwordCheckError) && <h4 className={classes.errorSubmit}> Wrong password</h4>}
+
             <form className={classes.form} onSubmit={props.handleSubmit}>
                 <h1 className={classes.header}>Please Sign In</h1>
 
@@ -81,7 +92,7 @@ export const SignInForm =(props)=> {
                     variant='contained'
                     color="primary"
                     type="submit"
-                    text="Sign up"
+                    buttonText={props.buttonText}
                 />
 
                 <ButtonMaterial
@@ -89,7 +100,7 @@ export const SignInForm =(props)=> {
                     color="primary"
                     type="button"
                     onClick={props.onClick}
-                    text="Clear form"
+                    buttonText={props.clearForm}
 
                 />
             </form>
