@@ -67,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const SignUpForm = (props) => {
     const classes = useStyles();
-
     return (
         <div className={classes.root}>
             {(props.submitError) &&
@@ -80,8 +79,8 @@ export const SignUpForm = (props) => {
                     placeholder="John"
                     type='text'
                     value={props.values.firstName}
-                    error={props.errors.firstName}
-                    helperText={props.helperText.firstName}
+                    // error={props.errors.firstName}
+                    // helperText={props.helperText.firstName}
                     handleChange={props.handleChange('firstName')}
                 />
 
@@ -91,8 +90,8 @@ export const SignUpForm = (props) => {
                     placeholder="Johnson"
                     type='text'
                     value={props.values.lastName}
-                    error={props.errors.lastName}
-                    helperText={props.helperText.lastName}
+                    // error={props.errors.lastName}
+                    // helperText={props.helperText.lastName}
                     handleChange={props.handleChange('lastName')}
                 />
 
@@ -102,8 +101,8 @@ export const SignUpForm = (props) => {
                     placeholder={`example@gmail.com`}
                     type='email'
                     value={props.values.email}
-                    error={props.errors.email}
-                    helperText={props.helperText.email}
+                    // error={props.errors.email}
+                    // helperText={props.helperText.email}
                     handleChange={props.handleChange('email')}
                 />
 
@@ -111,8 +110,8 @@ export const SignUpForm = (props) => {
                     label='Password'
                     placeholder='Password'
                     value={props.values.password}
-                    error={props.errors.password}
-                    helperText={props.helperText.password}
+                    // error={props.errors.password}
+                    // helperText={props.helperText.password}
                     labelWidth={70}
                     handleChange={props.handleChange("password")}
                 />
@@ -121,8 +120,8 @@ export const SignUpForm = (props) => {
                     label='Confirm Password'
                     placeholder='Confirm password'
                     value={props.values.confirmPassword}
-                    error={props.errors.confirmPassword}
-                    helperText={props.helperText.confirmPassword}
+                    // error={props.errors.confirmPassword}
+                    // helperText={props.helperText.confirmPassword}
                     labelWidth={130}
                     handleChange={props.handleChange('confirmPassword')}
                 />
@@ -139,7 +138,7 @@ export const SignUpForm = (props) => {
                     color="primary"
                     type="button"
                     onClick={props.onClick}
-                    buttonText={props.clearForm}
+                    // buttonText={props.clearForm}
 
                 />
             </form>

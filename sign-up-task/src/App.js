@@ -19,8 +19,8 @@ const App = () => {
                     <h1>To proceed, please Sign In or Sign Up</h1>
                     <Route path={'/signUp'}
                            render={withSuspense(SignUpContainer)}/>
-                    <Route path={'/signIn'}
-                           render={withSuspense(SignInContainer)}/>
+                    {/*<Route path={'/signIn'}*/}
+                    {/*       render={withSuspense(SignInContainer)}/>*/}
                 </div>
             </div>
             </Provider>

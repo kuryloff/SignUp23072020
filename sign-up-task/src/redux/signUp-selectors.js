@@ -1,15 +1,14 @@
-export const getEmailExist = (state) => {
-    return state.signUp.emailExist
+export const getFirstName = (state) => {
+    return state.signUp.get('firstName')
+};
+export const getLastName = (state) => {
+    return state.signUp.get('lastName')
+};
+export const getEmail = (state) => {
+    return state.signUp.get('email')
+};
+export const getPassword = (state) => {
+    return state.signUp.get('password')
 };
 
-export const getValues = (state) => {
-    return state.signUp.values
-};
 
-export const getErrors = (state) => {
-    return state.signUp.errors
-};
-
-export const getHelperText= (state) => {
-    return state.signUp.helperText
-};

@@ -1,22 +1,26 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SignUpForm} from "./SignUpForm";
-import { formValidator} from "../../Utils/validators";
+import {fieldValidator, formValidator} from "../../Utils/validators";
 import {connect} from "react-redux";
-import {checkEmailDB, fieldOnChange, setClearForm} from "../../redux/signUp-reducer";
+import {checkEmailDB, fieldOnChange, setClearForm, setValue} from "../../redux/signUp-reducer";
 import {
-    getEmailExist,
-    getErrors,
-    getHelperText,
-    getValues
+    getEmail,
+    getFirstName,
+    getLastName, getPassword,
+
 } from "../../redux/signUp-selectors";
 
 
 const SignUpContainer = (props) => {
+const [error, setError] = useState();
+const [helperText, setHelperText] = useState();
+
 
     const handleChange = (field) => (e) => {
-        let password = props.values.password;
-        let value = e.target.value;
-        props.fieldOnChange(field, value, password);
+        props.setValue(field, e.target.value)
+        let validation = fieldValidator(field, e.target.value, props.password)
+        setError(error:{field :validation.error})
+        setHelperText(field, validation.helperText)
     };
 
     const handleSubmit = () => {
@@ -28,13 +32,13 @@ const SignUpContainer = (props) => {
 
     return (
         <SignUpForm
-            submitError={props.emailExist}
+            // submitError={props.emailExist}
             handleChange={handleChange}
             values={props.values}
-            onClick={props.setClearForm}
-            errors={props.errors}
-            helperText={props.helperText}
-            handleSubmit={handleSubmit}
+            // onClick={props.setClearForm}
+            // errors={props.errors}
+            // helperText={props.helperText}
+            // handleSubmit={handleSubmit}
             buttonText="Sign Up"
             clearForm='Clear form'
         />
@@ -44,13 +48,15 @@ const SignUpContainer = (props) => {
 let mapStateToProps = (state) => {
 
     return {
-        emailExist: getEmailExist(state),
-        values: getValues(state),
-        errors: getErrors(state),
-        helperText: getHelperText(state),
+        values: {
+            firstName: getFirstName(state),
+            lastName: getLastName(state),
+            email: getEmail(state),
+            password: getPassword(state),
+        }
     }
 };
 
 
 export default connect(mapStateToProps,
-    {fieldOnChange, checkEmailDB, setClearForm})(SignUpContainer);
+    {setValue, setClearForm, fieldOnChange})(SignUpContainer);
