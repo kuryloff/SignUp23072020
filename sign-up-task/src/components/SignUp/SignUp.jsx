@@ -11,6 +11,7 @@ const SignUp = (props) => {
     const [confirmPassword, setConfirmPassword] = useState(false)
     const [emailExists, setEmailExists] = useState(false)
     const [success, setSuccess] = useState(false)
+    const [touched, setTouched] = useState(false)
 
 
     const firstNameError = fieldValidator("firstName", props.values.firstName);
@@ -22,10 +23,13 @@ const SignUp = (props) => {
 
     const handleChange = (field, firstNameError, lastNameError, emailError, passwordError, confirmPasswordError) => (e) => {
         setSuccess(false);
+        setTouched(value =>{touched:{[field]=true}})
         (field === "confirmPassword")
             ? setConfirmPassword(e.target.value)
             : props.setValue(field, e.target.value)
     };
+
+
 
     const handleSubmit = () => {
         (firstNameError || lastNameError || emailError || passwordError || confirmPasswordError)
@@ -52,6 +56,7 @@ const SignUp = (props) => {
 
     return (
         <SignUpForm
+            touched={touched}
             submitError={emailExists}
             success={success}
             handleChange={handleChange}

@@ -80,7 +80,7 @@ export const SignUpForm = (props) => {
                     placeholder="John"
                     type='text'
                     value={props.values.firstName}
-                    error={!!props.firstNameError}
+                    error={Boolean(props.touched.firstName && !!props.firstNameError)}
                     helperText={props.firstNameError}
                     handleChange={props.handleChange('firstName')}
                 />
@@ -91,7 +91,8 @@ export const SignUpForm = (props) => {
                     placeholder="Johnson"
                     type='text'
                     value={props.values.lastName}
-                    error={!!props.lastNameError}
+                    // error={!!props.lastNameError}
+                    error={Boolean(props.touched.lastName && !!props.lastNameError)}
                     helperText={props.lastNameError}
                     handleChange={props.handleChange('lastName')}
                 />
@@ -102,7 +103,8 @@ export const SignUpForm = (props) => {
                     placeholder={`example@gmail.com`}
                     type='email'
                     value={props.values.email}
-                    error={!!props.emailError}
+                    // error={!!props.emailError}
+                    error={Boolean(props.touched.email && !!props.emailError)}
                     helperText={props.emailError}
                     handleChange={props.handleChange('email')}
                 />
@@ -111,7 +113,8 @@ export const SignUpForm = (props) => {
                     label='Password'
                     placeholder='Password'
                     value={props.values.password}
-                    error={!!props.passwordError}
+                    // error={!!props.passwordError}
+                    error={Boolean(props.touched.email && !!props.passwordError)}
                     helperText={props.passwordError}
                     labelWidth={70}
                     handleChange={props.handleChange("password")}
@@ -121,7 +124,8 @@ export const SignUpForm = (props) => {
                     label='Confirm Password'
                     placeholder='Confirm password'
                     value={props.confirmPassword}
-                    error={!!props.confirmPasswordError}
+                    // error={!!props.confirmPasswordError}
+                    error={Boolean(props.touched.confirmPasswordError && !!props.confirmPasswordError)}
                     helperText={props.confirmPasswordError}
                     labelWidth={130}
                     handleChange={props.handleChange('confirmPassword')}
