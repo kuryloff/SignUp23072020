@@ -1,4 +1,4 @@
-export const fieldValidator = (fieldName, value = "", passwordValue = '') => {
+export const fieldValidator = (fieldName, value = "", confirmPassword = '') => {
     switch (fieldName) {
         case 'firstName':
              return (value === "")
@@ -30,7 +30,7 @@ export const fieldValidator = (fieldName, value = "", passwordValue = '') => {
                     ? 'Password must include 8-64 characters: lowercase, uppercase, digit, symbol'
                     : undefined)
         case 'confirmPassword':
-            return (value !== passwordValue)
+            return (value !== confirmPassword)
                 ? `Confirmed password doesn't match the password`
                 : undefined
         default:

@@ -2,10 +2,10 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import {HashRouter, Route} from "react-router-dom";
-import {withSuspense} from "./hoc/withSuspense";
+import {withSuspense} from "./data/hoc/withSuspense";
 import SignUpContainer from "./components/SignUp/SignUp";
 import SignInContainer from "./components/SignIn/SignIn";
-import store from "./redux/redux-store";
+import store from "./data/redux/redux-store";
 import {Provider} from "react-redux";
 
 

@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import {SignUpForm} from "./SignUpForm";
-import {fieldValidator} from "../../Utils/validators";
+import {fieldValidator} from "../../data/Utils/validators";
 import {connect} from "react-redux";
-import {setClearForm, setValue} from "../../redux/signUp-reducer";
-import {getEmail, getFirstName, getLastName, getPassword} from "../../redux/signUp-selectors";
-import {usersAPI} from "../../api/api";
+import {ClearValues, ClearConfirmPassword, setConfirmPassword, setValue} from "../../data/redux/signUp-reducer";
+import {getConfirmPassword, getEmail, getFirstName, getLastName, getPassword} from "../../data/redux/signUp-selectors";
+import {usersAPI} from "../../data/api/api";
 
 
 const SignUp = (props) => {
-    const [confirmPassword, setConfirmPassword] = useState(false)
     const [emailExists, setEmailExists] = useState(false)
     const [success, setSuccess] = useState(false)
+    const [incorrectForm, setIncorrectForm] = useState(false)
     const [touched, setTouched] = useState(false)
 
 
@@ -18,22 +18,22 @@ const SignUp = (props) => {
     const lastNameError = fieldValidator("lastName", props.values.lastName);
     const emailError = fieldValidator("email", props.values.email);
     const passwordError = fieldValidator("password", props.values.password);
-    const confirmPasswordError = fieldValidator("confirmPassword", props.values.password, confirmPassword);
+    const confirmPasswordError = fieldValidator("confirmPassword", props.values.password, props.confirmPassword);
 
 
-    const handleChange = (field, firstNameError, lastNameError, emailError, passwordError, confirmPasswordError) => (e) => {
+    const handleChange = (field) => (e) => {
         setSuccess(false);
-        setTouched(value =>{touched:{[field]=true}})
+        setTouched(touched => ({...touched, [field]: true}));
         (field === "confirmPassword")
-            ? setConfirmPassword(e.target.value)
+            ? props.setConfirmPassword(e.target.value)
             : props.setValue(field, e.target.value)
     };
 
 
-
     const handleSubmit = () => {
+        setEmailExists(false);
         (firstNameError || lastNameError || emailError || passwordError || confirmPasswordError)
-            ? setSuccess(false)
+            ? setIncorrectForm(true)
             : checkEmailDB(props.values)
     }
 
@@ -51,17 +51,21 @@ const SignUp = (props) => {
     }
 
     const clearFormFields = () => {
-        props.setClearForm();
+        props.ClearValues();
+        props.ClearConfirmPassword();
+        setTouched(false);
+        setIncorrectForm(false)
     }
 
     return (
         <SignUpForm
+            incorrectForm={incorrectForm}
             touched={touched}
             submitError={emailExists}
             success={success}
             handleChange={handleChange}
             values={props.values}
-            confirmPassword={confirmPassword}
+            confirmPassword={props.confirmPassword}
             onClick={clearFormFields}
             firstNameError={firstNameError}
             lastNameError={lastNameError}
@@ -82,9 +86,10 @@ let mapStateToProps = (state) => {
             lastName: getLastName(state),
             email: getEmail(state),
             password: getPassword(state),
-        }
+        },
+        confirmPassword: getConfirmPassword(state),
     }
 };
 
 export default connect(mapStateToProps,
-    {setValue, setClearForm})(SignUp);
+    {setValue, ClearValues, ClearConfirmPassword, setConfirmPassword})(SignUp);

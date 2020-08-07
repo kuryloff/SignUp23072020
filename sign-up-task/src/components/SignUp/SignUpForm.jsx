@@ -72,6 +72,8 @@ export const SignUpForm = (props) => {
             <h4 className={classes.errorSubmit}> This email is already registered. Enter different email</h4>}
             {(props.success) &&
             <h4 className={classes.errorSubmit}>Signed up successfully</h4>}
+            {(props.incorrectForm) &&
+            <h4 className={classes.errorSubmit}>Fill form correctly</h4>}
             <form className={classes.form} onSubmit={props.handleSubmit}>
                 <h1 className={classes.header}>Please Sign Up</h1>
                 <Input
@@ -81,7 +83,7 @@ export const SignUpForm = (props) => {
                     type='text'
                     value={props.values.firstName}
                     error={Boolean(props.touched.firstName && !!props.firstNameError)}
-                    helperText={props.firstNameError}
+                    helperText={props.touched.firstName && props.firstNameError}
                     handleChange={props.handleChange('firstName')}
                 />
 
@@ -91,9 +93,8 @@ export const SignUpForm = (props) => {
                     placeholder="Johnson"
                     type='text'
                     value={props.values.lastName}
-                    // error={!!props.lastNameError}
                     error={Boolean(props.touched.lastName && !!props.lastNameError)}
-                    helperText={props.lastNameError}
+                    helperText={props.touched.lastName && props.lastNameError}
                     handleChange={props.handleChange('lastName')}
                 />
 
@@ -103,9 +104,8 @@ export const SignUpForm = (props) => {
                     placeholder={`example@gmail.com`}
                     type='email'
                     value={props.values.email}
-                    // error={!!props.emailError}
                     error={Boolean(props.touched.email && !!props.emailError)}
-                    helperText={props.emailError}
+                    helperText={props.touched.email && props.emailError}
                     handleChange={props.handleChange('email')}
                 />
 
@@ -113,9 +113,8 @@ export const SignUpForm = (props) => {
                     label='Password'
                     placeholder='Password'
                     value={props.values.password}
-                    // error={!!props.passwordError}
-                    error={Boolean(props.touched.email && !!props.passwordError)}
-                    helperText={props.passwordError}
+                    error={Boolean(props.touched.password && !!props.passwordError)}
+                    helperText={props.touched.password && props.passwordError}
                     labelWidth={70}
                     handleChange={props.handleChange("password")}
                 />
@@ -124,9 +123,8 @@ export const SignUpForm = (props) => {
                     label='Confirm Password'
                     placeholder='Confirm password'
                     value={props.confirmPassword}
-                    // error={!!props.confirmPasswordError}
-                    error={Boolean(props.touched.confirmPasswordError && !!props.confirmPasswordError)}
-                    helperText={props.confirmPasswordError}
+                    error={Boolean(props.touched.confirmPassword && !!props.confirmPasswordError)}
+                    helperText={props.touched.confirmPassword && props.confirmPasswordError}
                     labelWidth={130}
                     handleChange={props.handleChange('confirmPassword')}
                 />

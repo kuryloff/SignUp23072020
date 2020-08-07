@@ -66,7 +66,8 @@ export const SignInForm = (props) => {
                 In</h4>}
             {(!props.correctPassword) && <h4 className={classes.errorSubmit}> Wrong password</h4>}
             {(props.loginSuccess) && <h4 className={classes.errorSubmit}> !!! Successful LOGIN !!!</h4>}
-
+            {(props.incorrectForm) &&
+            <h4 className={classes.errorSubmit}>Fill form correctly</h4>}
             <form className={classes.form} onSubmit={props.handleSubmit}>
                 <h1 className={classes.header}>Please Sign In</h1>
 
@@ -76,8 +77,8 @@ export const SignInForm = (props) => {
                     placeholder={`example@gmail.com`}
                     type='email'
                     value={props.values.email}
-                    error={!!props.emailError}
-                    helperText={props.emailError}
+                    error={Boolean(props.touched.email && !!props.emailError)}
+                    helperText={props.touched.email && props.emailError}
                     handleChange={props.handleChange('email')}
                 />
 
@@ -85,8 +86,8 @@ export const SignInForm = (props) => {
                     label='Password'
                     placeholder='Password'
                     value={props.values.password}
-                    error={!!props.passwordError}
-                    helperText={props.passwordError}
+                    error={Boolean(props.touched.password && !!props.passwordError)}
+                    helperText={props.touched.password && props.passwordError}
                     labelWidth={60}
                     handleChange={props.handleChange("password")}
                 />
