@@ -1,38 +1,36 @@
 import React, {useState} from 'react';
 import {SignUpForm} from "./SignUpForm";
-import {fieldValidator, formValidator} from "../../Utils/validators";
+import {fieldValidator} from "../../Utils/validators";
 import {connect} from "react-redux";
 import {setClearForm, setValue} from "../../redux/signUp-reducer";
-import {
-    getEmail,
-    getFirstName,
-    getLastName, getPassword,
-
-} from "../../redux/signUp-selectors";
+import {getEmail, getFirstName, getLastName, getPassword} from "../../redux/signUp-selectors";
 import {usersAPI} from "../../api/api";
 
 
 const SignUp = (props) => {
-
-    const [confirmPasswordValue, setConfirmPasswordValue] = useState(false);
-    const [error, setError] = useState(false);
-    const [helperText, setHelperText] = useState(false);
-    const [emailExists, setEmailExists] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState(false)
+    const [emailExists, setEmailExists] = useState(false)
+    const [success, setSuccess] = useState(false)
 
 
-    const handleChange = (field) => (e) => {
+    const firstNameError = fieldValidator("firstName", props.values.firstName);
+    const lastNameError = fieldValidator("lastName", props.values.lastName);
+    const emailError = fieldValidator("email", props.values.email);
+    const passwordError = fieldValidator("password", props.values.password);
+    const confirmPasswordError = fieldValidator("confirmPassword", props.values.password, confirmPassword);
+
+
+    const handleChange = (field, firstNameError, lastNameError, emailError, passwordError, confirmPasswordError) => (e) => {
+        setSuccess(false);
         (field === "confirmPassword")
-            ? setConfirmPasswordValue(e.target.value)
+            ? setConfirmPassword(e.target.value)
             : props.setValue(field, e.target.value)
-        let validation = fieldValidator(field, e.target.value, props.values.password)
-        // setError(values => ({...values, [field]: validation.error}));
-        // setHelperText(values => ({...values, [field]: validation.helperText}));
     };
 
     const handleSubmit = () => {
-        let isValid = formValidator(error, props.values);
-        isValid && checkEmailDB(props.values);
-        !isValid && console.log("INVALID");
+        (firstNameError || lastNameError || emailError || passwordError || confirmPasswordError)
+            ? setSuccess(false)
+            : checkEmailDB(props.values)
     }
 
     const checkEmailDB = async (values) => {
@@ -40,29 +38,31 @@ const SignUp = (props) => {
             .then(res => res.data)
             .catch(err => alert(err));
         if (users.some(u => u.email === values.email)) {
-            setEmailExists(true)
+            setEmailExists(true);
         } else {
             setEmailExists(false);
+            setSuccess(true);
             await usersAPI.setUser(props.values)
         }
     }
 
     const clearFormFields = () => {
         props.setClearForm();
-        setError(false);
-        setHelperText(false);
-        setConfirmPasswordValue(false);
     }
 
     return (
         <SignUpForm
             submitError={emailExists}
+            success={success}
             handleChange={handleChange}
             values={props.values}
-            confirmPasswordValue={confirmPasswordValue}
+            confirmPassword={confirmPassword}
             onClick={clearFormFields}
-            errors={validation.error}
-            helperText={helperText}
+            firstNameError={firstNameError}
+            lastNameError={lastNameError}
+            emailError={emailError}
+            passwordError={passwordError}
+            confirmPasswordError={confirmPasswordError}
             handleSubmit={handleSubmit}
             buttonText="Sign Up"
             clearForm='Clear form'
@@ -71,7 +71,6 @@ const SignUp = (props) => {
 };
 
 let mapStateToProps = (state) => {
-
     return {
         values: {
             firstName: getFirstName(state),
@@ -81,7 +80,6 @@ let mapStateToProps = (state) => {
         }
     }
 };
-
 
 export default connect(mapStateToProps,
     {setValue, setClearForm})(SignUp);

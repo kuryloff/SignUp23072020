@@ -76,8 +76,8 @@ export const SignInForm = (props) => {
                     placeholder={`example@gmail.com`}
                     type='email'
                     value={props.values.email}
-                    error={props.errors.email}
-                    helperText={props.helperText.email}
+                    error={!!props.emailError}
+                    helperText={props.emailError}
                     handleChange={props.handleChange('email')}
                 />
 
@@ -85,8 +85,8 @@ export const SignInForm = (props) => {
                     label='Password'
                     placeholder='Password'
                     value={props.values.password}
-                    error={props.errors.password}
-                    helperText={props.helperText.password}
+                    error={!!props.passwordError}
+                    helperText={props.passwordError}
                     labelWidth={60}
                     handleChange={props.handleChange("password")}
                 />

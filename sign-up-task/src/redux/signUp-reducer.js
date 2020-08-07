@@ -5,10 +5,10 @@ const SET_CLEAR_FORM = 'sign-up-task/signUp/SET_CLEAR_FORM';
 
 
 const  CreateUserDTO = Record({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: ""
 });
 const values = new CreateUserDTO();
 

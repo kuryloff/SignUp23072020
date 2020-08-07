@@ -2,29 +2,25 @@ import React, {useState} from 'react';
 import {SignInForm} from "./SignInForm";
 import {connect} from "react-redux";
 import {setClearForm, setValue} from "../../redux/signIn-reducer";
-import {fieldValidator, formValidator} from "../../Utils/validators";
+import {fieldValidator} from "../../Utils/validators";
 import {getEmail, getPassword} from "../../redux/signIn-selectors";
 import {usersAPI} from "../../api/api";
 
 const SignIn = (props) => {
-    const [error, setError] = useState(false);
-    const [helperText, setHelperText] = useState(false);
+
     const [correctEmail, setCorrectEmail] = useState(true);
     const [correctPassword, setCorrectPassword] = useState(true);
     const [loginSuccess, setLoginSuccess] = useState(false);
 
+    const emailError = fieldValidator("email", props.values.email);
+    const passwordError = fieldValidator("password", props.values.password);
 
     const handleChange = (field) => (e) => {
         props.setValue(field, e.target.value)
-        let validation = fieldValidator(field, e.target.value);
-        setError(values => ({...values, [field]: validation.error}));
-        setHelperText(values => ({...values, [field]: validation.helperText}));
     };
 
     const handleSubmit = () => {
-        let isValid = formValidator(error, props.values);
-        isValid && checkUserDB(props.values);
-        !isValid && alert("INVALID SIGN IN");
+        !emailError && !passwordError && checkUserDB(props.values);
     }
 
     const checkUserDB = async (loginUser)=>{
@@ -46,10 +42,9 @@ const SignIn = (props) => {
 
     const clearFormFields = () => {
         props.setClearForm();
-        setError(false);
-        setHelperText(false);
         setCorrectEmail(true);
         setCorrectPassword(true);
+        setLoginSuccess(false)
     }
 
     return (
@@ -57,8 +52,8 @@ const SignIn = (props) => {
             handleChange={handleChange}
             values={props.values}
             onClick={clearFormFields}
-            errors={error}
-            helperText={helperText}
+            emailError={emailError}
+            passwordError={passwordError}
             handleSubmit={handleSubmit}
             correctEmail={correctEmail}
             correctPassword={correctPassword}

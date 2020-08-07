@@ -1,46 +1,38 @@
-export const fieldValidator = (fieldName, value = '', passwordValue = '') => {
+export const fieldValidator = (fieldName, value = "", passwordValue = '') => {
     switch (fieldName) {
         case 'firstName':
+             return (value === "")
+                ? 'Field is empty'
+                : ((value.length > 100)
+                    ? 'Maximum 100 characters allowed'
+                    : undefined)
         case 'lastName':
             return (value === "")
-                ? {error: true, helperText: 'Field is empty'}
+                 ? 'Field is empty'
                 : ((value.length > 100)
-                    ? {error: true, helperText: 'Maximum 100 characters allowed'}
-                    : {error: false, helperText: ''})
-
+                    ? 'Maximum 100 characters allowed'
+                    : undefined)
         case 'email':
             return (value === "")
-                ? {error: true, helperText: 'Field is empty'}
+                   ? 'Field is empty'
                 : ((!value.match(
                     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
                 ))
-                    ? {error: true, helperText: 'Enter valid email'}
-                    : {error: false, helperText: ''})
+                    ? 'Enter valid email'
+                    : undefined)
 
         case 'password':
             return (value === "")
-                ? {error: true, helperText: 'Field is empty'}
+                  ? 'Field is empty'
                 : ((!value.match(
                         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,64}$/)
                 )
-                    ? {
-                        error: true,
-                        helperText: 'Password must include 8-64 characters: lowercase, uppercase, digit, symbol'
-                    }
-                    : {error: false, helperText: ''})
-
+                    ? 'Password must include 8-64 characters: lowercase, uppercase, digit, symbol'
+                    : undefined)
         case 'confirmPassword':
             return (value !== passwordValue)
-                ? {error: true, helperText: `Confirmed password doesn't match the password`}
-                : {error: false, helperText: ``}
-
+                ? `Confirmed password doesn't match the password`
+                : undefined
         default:
     }
-}
-
-
-export const formValidator = (errors, values) => {
-    let valid = false;
-   !Object.values(errors).some(x => x === true) && !Object.values(values).some(x => x === "")  && (valid = true);
-    return valid
 }
