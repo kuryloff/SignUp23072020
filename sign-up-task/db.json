@@ -20,13 +20,6 @@
       "lastName": "Peterson",
       "email": "johnson@gmail.com",
       "password": "QWEasd123@"
-    },
-    {
-      "firstName": "Ігор",
-      "lastName": "Курильов",
-      "email": "kuryloff@gmail.com",
-      "password": "asdQWE123@",
-      "id": 3
     }
   ]
 }

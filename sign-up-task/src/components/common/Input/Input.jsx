@@ -40,7 +40,7 @@ export const Input = (props) => {
             id={`outlined-basic-${props.label}`}
             label={props.label}
             variant="outlined"
-            value = {props.value || ""}
+            value = {props.value}
             type={props.type}
             placeholder={props.placeholder}
             error={props.error}

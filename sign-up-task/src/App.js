@@ -2,13 +2,17 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import {HashRouter, Route} from "react-router-dom";
-import {withSuspense} from "./hoc/withSuspense";
-import {SignInContainer} from "./components/SignIn/SignInContainer";
-import {SignUpContainer} from "./components/SignUp/SignUpContainer";
+import {withSuspense} from "./data/hoc/withSuspense";
+import SignUpContainer from "./components/SignUp/SignUp";
+import SignInContainer from "./components/SignIn/SignIn";
+import store from "./data/redux/redux-store";
+import {Provider} from "react-redux";
+
 
 const App = () => {
     return (
         <HashRouter>
+            <Provider store={store}>
             <div className='wrapper'>
                 <Header/>
                 <div className="content">
@@ -19,6 +23,7 @@ const App = () => {
                            render={withSuspense(SignInContainer)}/>
                 </div>
             </div>
+            </Provider>
         </HashRouter>
     )
 };
